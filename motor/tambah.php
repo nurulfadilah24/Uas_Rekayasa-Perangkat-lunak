@@ -1,5 +1,5 @@
 <?php
-include '../config/database.php';
+include "../config/database.php";
 
 if (isset($_POST['simpan'])) {
     $nama  = $_POST['nama_motor'];
@@ -7,17 +7,19 @@ if (isset($_POST['simpan'])) {
     $harga = $_POST['harga_sewa'];
     $stok  = $_POST['stok'];
 
-    mysqli_query($conn, "INSERT INTO motor VALUES (
-        NULL, '$nama', '$plat', '$harga', '$stok'
-    )");
+    mysqli_query($conn, "INSERT INTO motor 
+        (nama_motor, plat_nomor, harga_sewa, stok)
+        VALUES ('$nama', '$plat', '$harga', '$stok')
+    ");
 
     header("Location: index.php");
+    exit;
 }
 ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+    <meta charset="UTF-8">
     <title>Tambah Motor</title>
     <link rel="stylesheet" href="../assets/style.css">
 </head>
@@ -39,8 +41,13 @@ if (isset($_POST['simpan'])) {
         <label>Stok</label>
         <input type="number" name="stok" required>
 
-        <button type="submit" name="simpan">Simpan</button>
-        <a href="index.php" class="btn btn-danger">Batal</a>
+        <button type="submit" name="simpan" class="btn btn-primary">
+            Simpan
+        </button>
+
+        <a href="index.php" class="btn btn-danger">
+            Batal
+        </a>
     </form>
 </div>
 
